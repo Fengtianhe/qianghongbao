@@ -1,0 +1,188 @@
+html,body {
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+	font-size: 10px;
+}
+body {
+	line-height: 1px;
+}
+img {
+	display: inline-block;
+	border:none !important;
+}
+.top_section {
+	position: relative;
+}
+.btn {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+.ranking_title {
+	width: 100%;
+	background-color: #ddd;
+	height: 40px;
+	line-height: 40px;
+	font-size: 1.5rem;
+}
+.display_inline {
+	display: inline-block;
+}
+.text_align {
+	text-align: center;
+}
+.ranking_index {
+	width: 20%;
+}
+.ranking_name {
+	width: 50%;
+}
+.ranking_num {
+	width: 30%;
+}
+.ranking_list {
+	height: 50px;
+	line-height: 50px;
+	background-color: #eee;
+	border-bottom: 1px solid #ddd;
+}
+.user_logo {
+	vertical-align: -10px;
+	margin-left: 25px;
+}
+.user_name {
+	padding-left: 5px;
+}
+.float_left {
+	float: left;
+}
+.user_box {
+	width: 100%;
+	clear: both;
+}
+.customer_logo {
+	margin-left: 15px;
+	margin-top: 10px;
+	border-radius: 100%;
+}
+.custom_name {
+	padding-left: 22px;
+}
+.user_information {
+	width: 75%;
+}
+.right_jian_head {
+	margin-left: 10px;
+	margin-top: 10px;
+}
+.cuotomer_content {
+	width: 75%;
+	min-height: 60px;
+	line-height: 20px;
+	padding: 10px;
+	background-color: red;
+	border: 1px solid yellow;
+	font-size: 1.4rem;
+	text-align: justify;
+	border-radius: 5px;
+}
+/*清除浮动代码*/ 
+.clearfloat:after {
+	display:block;
+	clear:both;
+	content:"";
+	visibility:hidden;
+	height:0
+} 
+.clearfloat {
+	zoom:1
+}
+.rob_result {
+	width: 100%;
+	text-align: center;
+	padding: 20px 0;
+}
+.font15 {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+.font14 {
+	font-size: 14px;
+	font-weight: bold;
+}
+.font25 {
+	font-size: 2.5rem;
+	font-weight: bold;
+	color: red;
+}
+.rob_btn {
+	width:80%;
+	height:40px;
+	line-height:40px;
+	margin:0 auto;
+	background-color:red;
+	border:1px solid #fff;
+	text-align:center;
+	color: #fff;
+}
+.mar_top10 {
+	margin-top: 10px;
+}
+.mar_top30 {
+	margin-top: 30px;
+}
+.mar_btom30 {
+	margin-bottom: 50px;
+}
+.firend_num {
+	padding-left: 10px;
+}
+.ranking_people {
+	float: right;
+	padding-right: 10px;
+}
+.no_people {
+	width:94%;
+	height:40px;
+	line-height:40px;
+	background-color:#fff;
+	color:#000;
+	margin:20px auto;
+	text-align:center;
+}
+.have_people {
+	width:94%;
+	background-color:#fff;
+	margin:20px auto;
+}
+.people_list {
+	width:92%;
+	margin:0 auto;
+	padding: 5px 0;
+	border-bottom: 1px dashed red;
+}
+.rob_content {
+	width: 80%;
+	line-height: 25px;
+	font-size: 1.4rem;
+	padding-left: 5px;
+}
+.rob_content p {
+	margin: 0;
+}
+.help_rob {
+	width: 70%;
+	display: inline-block;
+}
+.rob_time {
+	width: 30%;
+	display: inline-block;
+	float: right;
+	text-align: right;
+}
+.border_radius100 {
+	border-radius: 100%;
+}
