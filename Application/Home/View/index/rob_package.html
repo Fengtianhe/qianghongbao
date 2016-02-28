@@ -14,16 +14,16 @@
 		<div class="user_box clearfloat">
 			<img class="float_left customer_logo" src="__PUBLIC__/images/top.png" alt="" width="50" height="50">
 			<div class="float_left user_information">
-				<p class="custom_name font15">用户名。。。。。</p>
+				<p class="custom_name font15">{$map.nickname}</p>
 				<img class="float_left right_jian_head" src="__PUBLIC__/images/top.png" alt="" width="10" height="10">
-				<div class="float_left cuotomer_content">我刚刚签到了100元的优惠券，挤满100升就送你ipad,凯利莱和我一起行动吧，你不会后悔的</div>
+				<div class="float_left cuotomer_content">我刚刚签到了{$map.first_rob}元的优惠券，挤满100升就送你ipad,凯利莱和我一起行动吧，你不会后悔的</div>
 			</div>
 		</div>
 	</section>
 	<section>
 		<p class="rob_result font15">
 			他已经抢到
-			<span class="font25">1.5</span>
+			<span class="font25">{$map.total_rob}</span>
 			万元
 		</p>
 		<div class="font15 rob_btn">轻轻一点，帮Ta抢红包</div>
@@ -38,39 +38,21 @@
 		<div class="font14 no_people">暂无粉丝</div>
 		<!-- 有粉丝 -->
 		<div class="have_people">
+			<volist id="vo" name="roblist">
 			<div class="people_list clearfloat">
 				<img class="float_left border_radius100" src="__PUBLIC__/images/top.png" alt="" width="50" height="50">
 				<div class="float_left rob_content">
 					<p>
-						<span class="help_rob font14">忘忧草帮Ta抢了忧草帮Ta抢了忧草帮Ta抢了<span>1.8</span>元红包</span>
-						<span class="rob_time font14">15分钟前</span>
+						<span class="help_rob font14">{$vo.username}帮Ta抢了<span>{$vo.rob_price}</span>元红包</span>
+						<span class="rob_time font14">{$vo.time}</span>
 					</p>
 					<p>你正好帮我抢了这么多钱吼吼</p>
 				</div>
 			</div>
-			<div class="people_list clearfloat">
-				<img class="float_left border_radius100" src="__PUBLIC__/images/top.png" alt="" width="50" height="50">
-				<div class="float_left rob_content">
-					<p>
-						<span class="help_rob font14">忘忧草帮Ta抢了<span>1.8</span>元红包</span>
-						<span class="rob_time font14">15分钟前</span>
-					</p>
-					<p>你正好帮我抢了忧草帮Ta抢了忧草帮Ta抢了这么多钱吼吼</p>
-				</div>
-			</div>
-			<div class="people_list clearfloat">
-				<img class="float_left border_radius100" src="__PUBLIC__/images/top.png" alt="" width="50" height="50">
-				<div class="float_left rob_content">
-					<p>
-						<span class="help_rob font14">忘忧草帮Ta抢了<span>1.8</span>元红包</span>
-						<span class="rob_time font14">15分钟前</span>
-					</p>
-					<p>你正好帮我抢了这么多钱吼吼</p>
-				</div>
-			</div>
+			</volist>
 		</div>
 		<p class="clearfloat mar_btom30">
-			<span class="ranking_people font14">查看活动规则>></span>
+			<span class="ranking_people font14"><a href="/home/index/rule">查看活动规则>></a></span>
 		</p>
 	</section>
 </body>
