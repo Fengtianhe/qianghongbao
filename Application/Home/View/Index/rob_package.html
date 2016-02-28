@@ -22,16 +22,23 @@
 	</section>
 	<section>
 		<p class="rob_result font15">
-			他已经抢到
+			TA已经抢到
 			<span class="font25">{$map.total_rob}</span>
-			万元
+			元
 		</p>
-		<div class="font15 rob_btn">轻轻一点，帮Ta抢红包</div>
-		<div class="font15 rob_btn mar_top10">我也要抢</div>
+		<if condition="$status neq 1">
+		<?php if($map['st'] != 1){ ?>
+		<a href="/home/index/dorob/inviter/<?php echo $_GET['inviter']?>"><div class="font15 rob_btn">轻轻一点，帮Ta抢红包</div></a>
+		<?php } ?>
+		
+		<?php if($map['sta'] != 1){ ?>
+		<a href="/home/index/doGrab"><div class="font15 rob_btn mar_top10">我也要抢</div></a>
+		<?php } ?>
+		</if>
 	</section>
 	<section>
 		<p class="clearfloat mar_top30">
-			<span class="font15 firend_num">已有<span>0</span>位好友帮我加油</span>
+			<span class="font15 firend_num">已有<span>{$map.friend}</span>位好友帮TA加油</span>
 			<span class="ranking_people font14">加油人气榜>></span>
 		</p>
 		<!-- 无粉丝 -->
@@ -52,7 +59,7 @@
 			</volist>
 		</div>
 		<p class="clearfloat mar_btom30">
-			<span class="ranking_people font14"><a href="/home/index/rule">查看活动规则>></a></span>
+			<span class="ranking_people font14"><a href="/home/index/rules">查看活动规则>></a></span>
 		</p>
 	</section>
 </body>
