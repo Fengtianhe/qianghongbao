@@ -10,7 +10,7 @@ class WeixinAuth {
     {
         if ($code = I('code')) {
             $token = $this->get_access_token($code);
-            $user_info = get_user_info($access_token, $open_id);
+            $user_info = $this->get_user_info($token['access_token'], $token['openid']);
             return $user_info;
         } else {
             $url = $this->get_authorize_url($redirect_uri);

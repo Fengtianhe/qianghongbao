@@ -3,13 +3,9 @@
 //检查微信授权
 function checkWeixinAuth(){
     if (!$_SESSION['me']['weixin']) {
-        $redirect_uri = $_SERVER['HTTP_HOST'].$_SERVER['QUERY_STRING'];
+        $redirect_uri = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['QUERY_STRING'];
         $Weixin = new \Common\Util\WeixinAuth();
-        $Weixin->authorize($redirect_uri);
+        $user_info = $Weixin->authorize($redirect_uri);
+        $_SESSION['me']['weixin'] = $user_info;
     }
 }
-
-function test(){
-    echo "123";
-}
-
