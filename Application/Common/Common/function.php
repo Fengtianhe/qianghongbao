@@ -4,20 +4,16 @@
 function checkWeixinAuth(){
     //线下模拟用户数数据
     if ($_SERVER['HTTP_HOST'] != 'dq1yt.ztpet.cn') {
-        $_SESSION['me']['weixin'] = array(
-            'me' => array(
-                'weixin' => array(
-                    'openid'    => 'ojkF1s0zSD-UINuV1So6NlhtAzFw',
-                    'nickname'  => '马莹',
-                    'sex'       => 1,
-                    'language'  => 'zh_CN',
-                    'city'      => '吉林',
-                    'province'  => '吉林',
-                    'country'   => '中国',
-                    'headimgurl' => 'http://wx.qlogo.cn/mmopen/uOleZXC9MkHt18ILqqRobph0G6XHjPFicCYWMRDAZSW3vbDFNWQnT5sg2Hk3ADz6pJfpkrA4gKVbvBLwcicsvOBuOPOgrIfnwK/0',
-                    'privilege'  => array()
-                )
-            )
+        $_SESSION['me']['weixin'] = array( 
+            'openid'    => 'ojkF1s0zSD-UINuV1So6NlhtAzFw',
+            'nickname'  => '马莹',
+            'sex'       => 1,
+            'language'  => 'zh_CN',
+            'city'      => '吉林',
+            'province'  => '吉林',
+            'country'   => '中国',
+            'headimgurl' => 'http://wx.qlogo.cn/mmopen/uOleZXC9MkHt18ILqqRobph0G6XHjPFicCYWMRDAZSW3vbDFNWQnT5sg2Hk3ADz6pJfpkrA4gKVbvBLwcicsvOBuOPOgrIfnwK/0',
+            'privilege'  => array()
         );
     }
 

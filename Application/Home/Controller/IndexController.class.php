@@ -10,16 +10,28 @@ class IndexController extends Controller {
 
     public function index(){
     	//测试数据
-    	$_SESSION['uid'] = 2;
+    	
+    	$openid = $_SESSION['me']['weixin']['openid'];
+    	$is_user = M('user')->where(array('openid' => $openid))->find();
+    	if (!$is_user) {
+    		$userinfo = $_SESSION['me']['weixin'];
+    		$save_user = M('user')->add($userinfo);
+    	}
 
-    	$uid = $_SESSION['uid'];
-
+    	$user_infomation = M('user')->where(array('openid' => $openid))->find();
+    	$uid = $user_infomation['id'];
     	$is_rob = M('rob')->where(array('uid' => $uid))->find();
     	if ($is_rob) {
     		$map['first_rob'] = $is_rob['first_rob'];
 			$map['total_rob'] = $is_rob['total_rob'];
+			$map['headimgurl'] = $user_infomation['headimgurl'];
+			$map['nickname'] = $user_infomation['nickname'];
 			$paycash =C('PAYCASH');
-			$map['value'] = $paycash - $map['price'];
+			$map['value'] = $paycash - $map['total_rob'];
+			if ($map['value'] <= 0) {
+				$this->assign('exchange',1);
+				$map['value'] = 0;
+			}
     		$roblist = $this->paihang();
 			$this->assign('roblist',$roblist);
 			$this->assign('map',$map);
@@ -60,9 +72,11 @@ class IndexController extends Controller {
 	//抢红包
 	public function doGrab(){
 		
-		$uid = $_SESSION['uid'];
-		$temp = M('user')->where(array('id' => $uid))->find();
+		$openid = $_SESSION['me']['weixin']['openid'];
+		$temp = M('user')->where(array('openid' => $openid))->find();
+		$uid = $temp['id'];
 		$map['nickname'] = $temp['nickname'];
+		$map['headimgurl'] = $temp['headimgurl'];
 		$is_rob = M('rob')->where(array('uid' => $uid))->find();
 		if ($is_rob) {  //判断是否已抢过红包
 			$map['first_rob'] = $is_rob['first_rob'];
@@ -95,7 +109,9 @@ class IndexController extends Controller {
 	}
 	public function rob_package(){
 		$inviter_id = $_SESSION['inviter_id'];
-		$uid = $_SESSION['uid'];
+		$openid = $_SESSION['me']['weixin']['openid'];
+		$temp_me = M('user')->where(array('openid' => $openid))->find();
+		$uid = $temp_me['id'];
 		$temp = M('user')->where(array('id' => $inviter_id))->find();
 		$map['nickname'] = $temp['nickname'];
 		$rob = M('rob')->where(array('uid' => $inviter_id))->find();
@@ -110,12 +126,17 @@ class IndexController extends Controller {
 		$this->display();
 	}
 	public function help_rob(){
-		$inviter_id = I('get.inviter' , $_SESSION['uid']);    //邀请人id
-		$_SESSION['inviter_id'] = $inviter_id;
-		$uid = $_SESSION['uid'];
-		$temp = M('user')->where(array('id' => $inviter_id))->find();
+		$openid = $_SESSION['me']['weixin']['openid'];
+		$temp_me = M('user')->where(array('openid' => $openid))->find();
+		$uid = $temp_me['id'];
+		$inviter_id = I('get.inviter' , $uid);    						//邀请人id
+		$_SESSION['inviter']['weixin']['id'] = $inviter_id;
+
+		$temp = M('user')->where(array('id' => $inviter_id))->find();   //获取邀请人信息
 		$map['nickname'] = $temp['nickname'];
-		$rob = M('rob')->where(array('uid' => $inviter_id))->find();
+		$map['headimgurl'] = $temp['headimgurl'];
+
+		$rob = M('rob')->where(array('uid' => $inviter_id))->find();    //获取邀请人抢过红包的金额
 		$map['first_rob'] = $rob['first_rob'];
 		$map['total_rob'] = $rob['total_rob'];
 

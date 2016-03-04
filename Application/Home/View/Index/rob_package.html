@@ -12,7 +12,7 @@
 	</section>
 	<section>
 		<div class="user_box clearfloat">
-			<img class="float_left customer_logo" src="__PUBLIC__/images/top.png" alt="" width="50" height="50">
+			<img class="float_left customer_logo" src="{$map.headimgurl}" alt="" width="50" height="50">
 			<div class="float_left user_information">
 				<p class="custom_name font15">{$map.nickname}</p>
 				<img class="float_left right_jian_head" src="__PUBLIC__/images/top.png" alt="" width="10" height="10">
@@ -22,10 +22,19 @@
 	</section>
 	<section>
 		<p class="rob_result font15">
+			<if condition="$status eq 1">
+				你已经抢到<span class="font25">{$map.total_rob}</span>元，还差<span class="font25">{$map.value}</span>元就可以兑现啦！
+			<else/>
 			TA已经抢到
 			<span class="font25">{$map.total_rob}</span>
 			元
+			</if>
 		</p>
+		<if condition="$exchange eq 1">
+		<p class="rob_result font15">
+			<a href="">兑换</a>
+		</p>
+		</if>
 		<if condition="$status neq 1">
 		<?php if($map['st'] != 1){ ?>
 		<a href="/home/index/dorob/inviter/<?php echo $_GET['inviter']?>"><div class="font15 rob_btn">轻轻一点，帮Ta抢红包</div></a>
