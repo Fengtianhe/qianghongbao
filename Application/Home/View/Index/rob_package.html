@@ -37,18 +37,18 @@
 		</if>
 		<if condition="$status neq 1">
 		<?php if($map['st'] != 1){ ?>
-		<a href="/home/index/dorob/inviter/<?php echo $_GET['inviter']?>"><div class="font15 rob_btn">轻轻一点，帮Ta抢红包</div></a>
+		<a href="/home/index/dorob/openid/<?php echo $_GET['openid']?>"><div class="font15 rob_btn">轻轻一点，帮Ta抢红包</div></a>
 		<?php } ?>
 		
 		<?php if($map['sta'] != 1){ ?>
-		<a href="/home/index/doGrab"><div class="font15 rob_btn mar_top10">我也要抢</div></a>
+		<a href="/home/index/index/openid/<?php echo $_SESSION['me']['weixin']['openid']?>"><div class="font15 rob_btn mar_top10">我也要抢</div></a>
 		<?php } ?>
 		</if>
 	</section>
 	<section>
 		<p class="clearfloat mar_top30">
 			<span class="font15 firend_num">已有<span>{$map.friend}</span>位好友帮TA加油</span>
-			<span class="ranking_people font14">加油人气榜>></span>
+			<span class="ranking_people font14"><a href="/home/Index/ranking_list">加油人气榜>></a></span>
 		</p>
 		<!-- 无粉丝 -->
 		<div class="font14 no_people">暂无粉丝</div>
@@ -56,7 +56,7 @@
 		<div class="have_people">
 			<volist id="vo" name="roblist">
 			<div class="people_list clearfloat">
-				<img class="float_left border_radius100" src="__PUBLIC__/images/top.png" alt="" width="50" height="50">
+				<img class="float_left border_radius100" src="{$vo.headimgurl}" alt="" width="50" height="50">
 				<div class="float_left rob_content">
 					<p>
 						<span class="help_rob font14">{$vo.username}帮Ta抢了<span>{$vo.rob_price}</span>元红包</span>

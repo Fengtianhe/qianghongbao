@@ -16,54 +16,20 @@
 			><span class="display_inline ranking_name text_align">昵称</span
 			><span class="display_inline ranking_num text_align">邀请人数</span>
 		</div>
+		<volist name="map" id="vo">
 		<div class="ranking_list">
 			<span class="display_inline ranking_index text_align">
 				<img src="__PUBLIC__/images/btn.png" alt="" width="15" height="15">
 			</span
 			><span class="display_inline ranking_name">
-				<img class="user_logo border_radius100" src="__PUBLIC__/images/top.png" alt="" width="30" height="30">
-				<span class="user_name">大虾大大虾啦啦啦</span>
+				<img class="user_logo border_radius100" src="{$vo.headimgurl}" alt="" width="30" height="30">
+				<span class="user_name">{$vo.nickname}</span>
 			</span
 			><span class="display_inline ranking_num text_align">
-				55555444
+				{$vo.friend}
 			</span>
 		</div>
-		<div class="ranking_list">
-			<span class="display_inline ranking_index text_align">
-				<img src="__PUBLIC__/images/btn.png" alt="" width="15" height="15">
-			</span
-			><span class="display_inline ranking_name">
-				<img class="user_logo border_radius100" src="__PUBLIC__/images/top.png" alt="" width="30" height="30">
-				<span class="user_name">大虾大虾</span>
-			</span
-			><span class="display_inline ranking_num text_align">
-				55555
-			</span>
-		</div>
-		<div class="ranking_list">
-			<span class="display_inline ranking_index text_align">
-				<img src="__PUBLIC__/images/btn.png" alt="" width="15" height="15">
-			</span
-			><span class="display_inline ranking_name">
-				<img class="user_logo border_radius100" src="__PUBLIC__/images/top.png" alt="" width="30" height="30">
-				<span class="user_name">大虾</span>
-			</span
-			><span class="display_inline ranking_num text_align">
-				5
-			</span>
-		</div>
-		<div class="ranking_list">
-			<span class="display_inline ranking_index text_align">
-				<img src="__PUBLIC__/images/btn.png" alt="" width="15" height="15">
-			</span
-			><span class="display_inline ranking_name">
-				<img class="user_logo border_radius100" src="__PUBLIC__/images/top.png" alt="" width="30" height="30">
-				<span class="user_name"></span>
-			</span
-			><span class="display_inline ranking_num text_align">
-				5
-			</span>
-		</div>
+		</volist>	
 	</section>
 </body>
 </html>
