@@ -19,7 +19,17 @@
 		<volist name="map" id="vo">
 		<div class="ranking_list">
 			<span class="display_inline ranking_index text_align">
-				<img src="__PUBLIC__/images/btn.png" alt="" width="15" height="15">
+				<?php 
+					if($i == 1){
+						echo"<img src='__PUBLIC__/images/jin.png' alt='' width='15' height='15'>";
+					}elseif($i == 2){
+						echo"<img src='__PUBLIC__/images/yin.png' alt='' width='15' height='15'>";
+					}elseif($i == 3){
+						echo"<img src='__PUBLIC__/images/tong.png' alt='' width='15' height='15'>";
+					}else{
+						echo $i;
+					}
+				?>
 			</span
 			><span class="display_inline ranking_name">
 				<img class="user_logo border_radius100" src="{$vo.headimgurl}" alt="" width="30" height="30">

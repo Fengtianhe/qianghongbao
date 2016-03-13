@@ -106,6 +106,8 @@ class IndexController extends Controller {
 				}
 				if (M('rob_list')->where(array('openid' => $openid,'friendopenid' => $meopenid))->find()) {
 					$map['sta'] = 1;
+				}else{
+					$map['sta'] = -1;
 				}
 			//}
 		}
@@ -146,8 +148,8 @@ class IndexController extends Controller {
 		$rob = M('rob')->select();
 		$count = count($rob);
 		for($i=0;$i<$count;$i++){
-			$uid = $rob[$i]['uid'];
-			$user = M('user')->where(array('id'=>$uid))->find();
+			$openid = $rob[$i]['openid'];
+			$user = M('user')->where(array('openid'=>$openid))->find();
 			$rob[$i]['headimgurl'] = $user['headimgurl'];
 			$rob[$i]['nickname'] = $user['nickname'];
 		}
@@ -163,8 +165,8 @@ class IndexController extends Controller {
    		$now_time = time();
    		$show_time = $the_time;
    		$dur = $now_time - $show_time;
-   		if($dur < 0){
-    		return $the_time;
+   		if($dur <= 0){
+    		return $the_time+1;
    		}elseif($dur < 60){
      		return $dur.'秒前';
     	}elseif($dur < 3600){
