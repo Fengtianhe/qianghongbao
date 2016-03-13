@@ -171,8 +171,8 @@ class IndexController extends Controller {
    		$now_time = time();
    		$show_time = $the_time;
    		$dur = $now_time - $show_time;
-   		if($dur <= 0){
-    		return $the_time+1;
+   		if($dur = 0){
+    		return '1秒前';
    		}elseif($dur < 60){
      		return $dur.'秒前';
     	}elseif($dur < 3600){
