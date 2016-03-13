@@ -39,7 +39,8 @@ class IndexController extends Controller {
 			$user = M('user')->where(array('openid' => $friendopenid))->find();
 			$rob_list[$i]['username'] = $user['nickname'];
 			$rob_list[$i]['headimgurl'] = $user['headimgurl'];
-			$rob_list[$i]['time'] = date('Y年m月d日 h:i:s',$rob_list[$i]['rob_time']);
+			$the_time = $rob_list[$i]['rob_time'];
+			$rob_list[$i]['time'] = $this->time_tran($the_time);
 		}
 		return $rob_list;
 	}
@@ -110,6 +111,7 @@ class IndexController extends Controller {
 		}
 		$roblist = $this->paihang();
 		$this->assign('roblist',$roblist);
+
 		$this->assign('map',$map);
 		$this->display();  
 	}	
@@ -156,6 +158,23 @@ class IndexController extends Controller {
 		$this->assign('map',$rob);
 		$this->display();
 	}
+
+	function time_tran($the_time){
+   		$now_time = time();
+   		$show_time = $the_time;
+   		$dur = $now_time - $show_time;
+   		if($dur < 0){
+    		return $the_time;
+   		}elseif($dur < 60){
+     		return $dur.'秒前';
+    	}elseif($dur < 3600){
+      		return floor($dur/60).'分钟前';
+     	}elseif($dur < 86400){
+       		return floor($dur/3600).'小时前';
+       	}else{
+        	return date("m/d h:i:s",$the_time);
+       	}
+    }
     public function test() {
         /*phpinfo();
         $str = file_get_contents('https://www.baidu.com');

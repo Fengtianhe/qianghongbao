@@ -5,8 +5,8 @@ function checkWeixinAuth(){
     //线下模拟用户数数据
     if ($_SERVER['HTTP_HOST'] != 'dq1yt.ztpet.cn') {
         $_SESSION['me']['weixin'] = array( 
-            'openid'    => 'ojkFasdfa6NlhtAzFw',
-            'nickname'  => 'asdssss',
+            'openid'    => 'ojkF1s0zSD-UINuV1So6NlhtAzFw',
+            'nickname'  => '马莹',
             'sex'       => 1,
             'language'  => 'zh_CN',
             'city'      => '吉林',
@@ -30,13 +30,13 @@ function checkWeixinAuth(){
         $Weixin = new \Common\Util\WeixinAuth();
         $user_info = $Weixin->authorize($redirect_uri);
         $_SESSION['me']['weixin'] = $user_info;
+    }
 
-        $openid = $_SESSION['me']['weixin']['openid'];
+    $openid = $_SESSION['me']['weixin']['openid'];
         //对当前用户进行判断，没有则加入数据库
         $is_user = M('user')->where(array('openid' => $openid))->find();   
         if (!$is_user) {
             $userinfo = $_SESSION['me']['weixin'];
             $save_user = M('user')->add($userinfo);
         }
-    }
 }
