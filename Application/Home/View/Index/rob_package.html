@@ -44,7 +44,10 @@
 		</a>
 		<?php } ?>
 		</if>
-		<?php if($map['sta'] == -1){ ?>
+		<?php 
+			$map['sta'] = I('get.sta',$map['sta']);
+			if($map['sta'] == -1){ 
+		?>
 		<a href="/home/index/index/openid/<?php echo $_SESSION['me']['weixin']['openid']?>"><div class="font15 rob_btn mar_top10">我也要抢</div></a>
 		<?php }elseif($map['sta'] == 1){ ?>
 		<div class="font15 rob_btn mar_top10" style="background: #333">我也要抢</div>

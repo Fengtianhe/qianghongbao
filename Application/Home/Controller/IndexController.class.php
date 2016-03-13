@@ -129,18 +129,24 @@ class IndexController extends Controller {
 		}
 		$meopenid = $_SESSION['me']['weixin']['openid'];
 		$rob_price = $this->randFloat();
-
+		//保存帮抢数据
 		$list['openid'] = $openid;
 		$list['friendopenid'] = $meopenid;
 		$list['rob_time'] = time();
 		$list['rob_price'] = $rob_price;
 		M('rob_list')->add($list);
-
+		//邀请人数+1
 		$temp = M('rob')->where(array('openid' => $openid))->find();
 		$data['total_rob'] = floatval($temp['total_rob']) + floatval($rob_price);
 		$data['friend'] =$temp['friend'] + 1;
 		M('rob')->where(array('openid' => $openid))->save($data);
-		$this->redirect('rob_package',array('openid'=>$openid,'sign' => '1'));
+
+		if (M('rob')->where(array('openid' => $meopenid))->find()) {
+			$this->redirect('rob_package',array('openid'=>$openid,'sign' => '1','sta' => '1'));
+		}else{
+			$this->redirect('rob_package',array('openid'=>$openid,'sign' => '1','sta' => '-1'));
+		}
+		
 	}
 
 	//读取人气榜
