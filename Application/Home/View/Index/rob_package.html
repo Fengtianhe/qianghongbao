@@ -30,11 +30,7 @@
 			元
 			</if>
 		</p>
-		<if condition="$exchange eq 1">
-		<p class="rob_result font15">
-			<a href="">兑换</a>
-		</p>
-		</if>
+		
 		<if condition="$status neq 1">
 		<?php if($map['st'] != 1){ ?>
 		<a href="/home/index/dorob/openid/<?php echo $_GET['openid']?>">
@@ -44,19 +40,33 @@
 		</a>
 		<?php } ?>
 		</if>
-		
-		<a href="/home/index/index/openid/<?php echo $_SESSION['me']['weixin']['openid']?>">
-			<div class="font15 rob_btn mar_top10">
-				<?php 
-					$map['sta'] = I('get.sta',$map['sta']);
-					if($map['sta'] == -1){ 
-						echo "我也要抢";
-					}elseif($map['sta'] == 1){
-						echo "查看我的红包";
-					}
-				?>
-			</div>
-		</a>
+	
+		<?php
+			$openid = $_GET['openid'];
+			$mod = $_SESSION['me']['weixin']['openid'];
+			if($openid != $mod){ 
+		?>	
+		<div class="font15 rob_btn mar_top10">
+			<?php 
+				$map['sta'] = I('get.sta',$map['sta']);
+				if($map['sta'] == -1){ 
+					echo "
+						<a href='/home/index/index/openid/".$_SESSION['me']['weixin']['openid']."'>我也要抢</a>
+					";
+				}elseif($map['sta'] == 1){
+					echo "
+						<a href='/home/index/index/openid/".$_SESSION['me']['weixin']['openid']."'>查看我的红包</a>
+					";
+				}elseif($map['sta'] == 2){
+					echo "
+						<a href=''>兑换</a>
+					";
+				}
+			?>
+		</div>
+		<?php
+			}
+		?>
 
 	</section>
 	<section>

@@ -5,8 +5,8 @@ function checkWeixinAuth(){
     //线下模拟用户数数据
     if ($_SERVER['HTTP_HOST'] != 'dq1yt.ztpet.cn') {
         $_SESSION['me']['weixin'] = array( 
-            'openid'    => 'ss234s0zSDssNuV1So6NlhtAzFw',
-            'nickname'  => '马234s莹',
+            'openid'    => 'sssdfs0zSDssNuV1So6NlhtAzFw',
+            'nickname'  => '马234ssdf莹',
             'sex'       => 1,
             'language'  => 'zh_CN',
             'city'      => '吉林',

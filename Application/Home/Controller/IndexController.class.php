@@ -84,7 +84,7 @@ class IndexController extends Controller {
 				$paycash =C('PAYCASH');
 				$map['value'] = $paycash - $map['total_rob'];
 				if ($map['value'] <= 0) {
-					$this->assign('exchange',1);
+					$this->assign('sta',2);
 					$map['value'] = 0;
 				}
     			$roblist = $this->paihang();
