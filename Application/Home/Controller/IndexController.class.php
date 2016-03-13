@@ -7,13 +7,7 @@ class IndexController extends Controller {
         checkWeixinAuth();
     }
     public function index(){
-    	$openid = $_SESSION['me']['weixin']['openid'];
-    	//对当前用户进行判断，没有则加入数据库
-    	$is_user = M('user')->where(array('openid' => $openid))->find();   
-    	if (!$is_user) {
-    		$userinfo = $_SESSION['me']['weixin'];
-    		$save_user = M('user')->add($userinfo);
-    	}
+     	$openid = $_SESSION['me']['weixin']['openid'];
     	//判断用户是否已抢过 sign标识是否抢过红包
     	$is_rob = M('rob')->where(array('openid' => $openid))->find();
     	if ($is_rob) {
