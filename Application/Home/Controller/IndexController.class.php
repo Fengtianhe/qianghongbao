@@ -104,7 +104,7 @@ class IndexController extends Controller {
 				if (M('rob_list')->where(array('openid' => $openid,'friendopenid' => $meopenid))->find()) {
 					$map['st'] = 1;
 				}
-				if (M('rob_list')->where(array('openid' => $openid,'friendopenid' => $meopenid))->find()) {
+				if (M('rob')->where(array('openid' => $meopenid))->find()) {
 					$map['sta'] = 1;
 				}else{
 					$map['sta'] = -1;
@@ -142,11 +142,11 @@ class IndexController extends Controller {
 		M('rob')->where(array('openid' => $openid))->save($data);
 
 		if (M('rob')->where(array('openid' => $meopenid))->find()) {
-			$this->redirect('rob_package',array('openid'=>$openid,'sign' => '1','sta' => '1'));
+			$sta = '1';
 		}else{
-			$this->redirect('rob_package',array('openid'=>$openid,'sign' => '1','sta' => '-1'));
+			$sta = '-1';
 		}
-		
+		$this->redirect('rob_package',array('openid'=>$openid,'sign' => '1','sta' => $sta));
 	}
 
 	//读取人气榜
