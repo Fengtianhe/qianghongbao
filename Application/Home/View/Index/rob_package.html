@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,16 +58,22 @@
 					echo "
 						<a href='/home/index/index/openid/".$_SESSION['me']['weixin']['openid']."'>查看我的红包</a>
 					";
-				}elseif($map['sta'] == 2){
-					echo "
-						<a href=''>兑换</a>
-					";
 				}
 			?>
 		</div>
 		<?php
+			}else{
+				if($map['sta'] == 2){
+					echo "
+						<div class='font15 rob_btn mar_top10'>
+							<a href=''>兑换</a>
+						</div>
+					";
+				}
 			}
 		?>
+
+		
 
 	</section>
 	<section>
