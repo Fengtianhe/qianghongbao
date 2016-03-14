@@ -86,6 +86,8 @@ class IndexController extends Controller {
 				if ($map['value'] <= 0) {
 					$map['sta'] = 2;
 					$map['value'] = 0;
+				}else{
+					$map['sta'] = -2;
 				}
     			$roblist = $this->paihang();
 				$this->assign('roblist',$roblist);
@@ -113,7 +115,8 @@ class IndexController extends Controller {
 		}
 		$roblist = $this->paihang();
 		$this->assign('roblist',$roblist);
-
+		$count = count($roblist);
+		$this->assign('count',$count-1);
 		$this->assign('map',$map);
 		$this->display();  
 	}	

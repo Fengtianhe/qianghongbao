@@ -69,6 +69,12 @@
 							<a href=''>兑换</a>
 						</div>
 					";
+				}elseif($map['sta'] == -2){
+					echo "
+						<div class='font15 rob_btn mar_top10' style='background: #333'>
+							兑换
+						</div>
+					";
 				}
 				echo "
 					<div class='font15 rob_btn mar_top10'>
@@ -83,11 +89,9 @@
 	</section>
 	<section>
 		<p class="clearfloat mar_top30">
-			<span class="font15 firend_num">已有<span>{$map.friend}</span>位好友帮TA加油</span>
+			<span class="font15 firend_num">已有<span>{$count}</span>位好友帮TA加油</span>
 			<span class="ranking_people font14"><a href="/home/Index/ranking_list">加油人气榜>></a></span>
 		</p>
-		<!-- 无粉丝 -->
-		<div class="font14 no_people">暂无粉丝</div>
 		<!-- 有粉丝 -->
 		<div class="have_people">
 			<volist id="vo" name="roblist">
