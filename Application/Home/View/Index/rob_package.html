@@ -108,8 +108,8 @@
 	<div id="guide"><img src="__PUBLIC__/images/guide1.png"></div>
 	<section>
 		<p class="clearfloat mar_top30">
-			<span class="font15 firend_num">已有<span>{$count}</span>位好友帮TA加油</span>
-			<span class="ranking_people font14"><a href="/home/Index/ranking_list">加油人气榜>></a></span>
+			<span class="font15 firend_num">已有<span>{$count}</span>位好友帮TA抢红包</span>
+			<span class="ranking_people font14"><a href="/home/Index/ranking_list">帮抢人气榜>></a></span>
 		</p>
 		<!-- 有粉丝 -->
 		<div class="have_people">
@@ -121,7 +121,7 @@
 						<span class="help_rob font14">{$vo.username}帮Ta抢了<span>{$vo.rob_price}</span>元红包</span>
 						<span class="rob_time font14">{$vo.time}</span>
 					</p>
-					<p>你正好帮我抢了这么多钱吼吼</p>
+					<p>{$reply_msg[$key%3]}</p>
 				</div>
 			</div>
 			</volist>

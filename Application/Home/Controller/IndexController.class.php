@@ -2,6 +2,12 @@
 namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
+	public $reply_msg = array(
+		0 => '太感谢了，有你的支持我就要可以兑换啦！',
+		1 => '手气不错哦，真棒！',
+		2 => '这么多，如果可以真的希望你再帮我抢十次呢！',
+		);
+
     public function _initialize() {
         header("Content-type:text/html;charset=utf-8");
         checkWeixinAuth();
@@ -116,6 +122,7 @@ class IndexController extends Controller {
 		$roblist = $this->paihang();
 		$this->assign('roblist',$roblist);
 		$count = count($roblist);
+		$this->assign('reply_msg', $this->reply_msg);
 		$this->assign('count',$count-1);
 		$this->assign('map',$map);
 		$this->display();  
