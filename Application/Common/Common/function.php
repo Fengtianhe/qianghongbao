@@ -40,3 +40,25 @@ function checkWeixinAuth(){
             $save_user = M('user')->add($userinfo);
         }
 }
+
+/**
+ * 二维数组多字段排序
+ * array_orderby($data,field1,sort,field2,sort,...)
+ * @return array 排序后的数组
+ */
+function array_orderby()
+{
+    $args = func_get_args();
+    $data = array_shift($args);
+    foreach ($args as $n => $field) {
+        if (is_string($field)) {
+            $tmp = array();
+            foreach ($data as $key => $row)
+                $tmp[$key] = $row[$field];
+            $args[$n] = $tmp;
+            }
+    }
+    $args[] = &$data;
+    call_user_func_array('array_multisort', $args);
+    return array_pop($args);
+}

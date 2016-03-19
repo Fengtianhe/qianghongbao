@@ -189,19 +189,15 @@ class IndexController extends Controller {
        	}
     }
     public function test() {
-        /*phpinfo();
-        $str = file_get_contents('https://www.baidu.com');
-        var_dump($str);*/
-        /*$ch = curl_init();
+        $data[] = array('volume' => 67, 'edition' => 2);
+		$data[] = array('volume' => 86, 'edition' => 1);
+		$data[] = array('volume' => 85, 'edition' => 6);
+		$data[] = array('volume' => 98, 'edition' => 2);
+		$data[] = array('volume' => 86, 'edition' => 6);
+		$data[] = array('volume' => 67, 'edition' => 7);
 
-        curl_setopt($ch,CURLOPT_URL,"https://www.baidu.com");
-
-        curl_setopt($ch,CURLOPT_HEADER,1);
-
-        $re = curl_exec($ch);
-
-        curl_close($ch);
-        var_dump($re);*/
-        echo file_get_contents('https://www.baidu.com');
-    }    
+		// Pass the array, followed by the column names and sort flags
+		$sorted = array_orderby($data, 'volume', SORT_DESC, 'edition', SORT_ASC);
+		var_dump($sorted);
+	}    
 }

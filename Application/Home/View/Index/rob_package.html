@@ -16,18 +16,24 @@
 			<div class="float_left user_information">
 				<p class="custom_name font15">{$map.nickname}</p>
 				<img class="float_left right_jian_head" src="__PUBLIC__/images/top.png" alt="" width="10" height="10">
-				<div class="float_left cuotomer_content">我刚刚签到了{$map.first_rob}元的优惠券，挤满100升就送你ipad,凯利莱和我一起行动吧，你不会后悔的</div>
+				<div class="float_left cuotomer_content">
+				<if condition="$status eq 1">
+					您已成功的领取红包，满{:C('PAYCASH')}元就可以兑现啦,快快分享，让大家一起帮你抢红包吧
+				<else/>
+					我刚刚抢到了大庆一元购的现金红包，满{:C('PAYCASH')}元就可以兑现啦,大家快来帮我抢红包
+				</if>
+				</div>
 			</div>
 		</div>
 	</section>
 	<section>
 		<p class="rob_result font15">
 			<if condition="$status eq 1">
-				你已经抢到<span class="font25">{$map.total_rob}</span>元，还差<span class="font25">{$map.value}</span>元就可以兑现啦！
+				红包金额<span class="font25">{$map.total_rob}</span>元，<if condition="$map['value'] gt 0">还差{$map.value}元可兑现！<else />可以兑现啦</if>
 			<else/>
 			TA已经抢到
 			<span class="font25">{$map.total_rob}</span>
-			元
+			元，快快帮他吧
 			</if>
 		</p>
 		
@@ -65,20 +71,20 @@
 				if($map['sta'] == 2){
 					echo "
 						<div class='font15 rob_btn mar_top10'>
-							<a href=''>兑换</a>
+							<a href=''>兑现</a>
 						</div>
 					";
 				}elseif($map['sta'] == -2){
 					echo "
 						<div class='font15 rob_btn mar_top10' style='background: #333'>
-							兑换
+							兑现
 						</div>
 					";
 				}
 				echo "
 					<div id='share_1'>
 						<button class='button2' onclick='_system._guide(true)'>
-							<img src='__PUBLIC__/images/icon_timeline.png'>&nbsp;发送给朋友
+							<img src='__PUBLIC__/images/icon_timeline.png'>&nbsp;发送给朋友或分享到朋友圈
 						</button>
 					</div>
 				";
@@ -91,9 +97,9 @@
 	<style>
 		#share_1{margin-top: 10px;}
 		button{width:80%;text-align:center;border-radius:3px; margin-left: 10%;height:40px;}
-		.button2{font-size:16px;padding:8px 0;border:1px solid #adadab;color:#000000;background-color: #e8e8e8;background-image:linear-gradient(to top, #dbdbdb, #f4f4f4);background-image:-webkit-gradient(linear, 0 100%, 0 0, from(#dbdbdb),to(#f4f4f4));box-shadow: 0 1px 1px rgba(0,0,0,0.45), inset 0 1px 1px #efefef; text-shadow: 0.5px 0.5px 1px #ffffff;}
+		.button2{font-size:16px;border:1px solid #adadab;color:#000000;background-color: #e8e8e8;background-image:linear-gradient(to top, #dbdbdb, #f4f4f4);background-image:-webkit-gradient(linear, 0 100%, 0 0, from(#dbdbdb),to(#f4f4f4));box-shadow: 0 1px 1px rgba(0,0,0,0.45), inset 0 1px 1px #efefef; text-shadow: 0.5px 0.5px 1px #ffffff;}
 		.button2:active{background-color: #dedede;background-image: linear-gradient(to top, #cacaca, #e0e0e0);background-image:-webkit-gradient(linear, 0 100%, 0 0, from(#cacaca),to(#e0e0e0));}
-		#share_1 img{width:22px;height:22px;}
+		#share_1 img{width:22px;height:22px;position:relative;top:4px;}
 		#cover{display:none;position:absolute;left:0;top:0;z-index:18888;background-color:#000000;opacity:0.7;}
 		#guide{display:none;position:absolute;right:18px;top:5px;z-index:19999;}
 		#guide img{width:260px;height:180px;}
