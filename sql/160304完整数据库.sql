@@ -17,16 +17,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 数据库: `qhb`
+-- 数据库: `widgets`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `qhb_rob`
+-- 表的结构 `widgets_rob`
 --
 
-CREATE TABLE IF NOT EXISTS `qhb_rob` (
+CREATE TABLE IF NOT EXISTS `widgets_rob` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `openid` varchar(50) NOT NULL,
   `first_rob` float NOT NULL,
@@ -38,10 +38,10 @@ CREATE TABLE IF NOT EXISTS `qhb_rob` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `qhb_rob_list`
+-- 表的结构 `widgets_rob_list`
 --
 
-CREATE TABLE IF NOT EXISTS `qhb_rob_list` (
+CREATE TABLE IF NOT EXISTS `widgets_rob_list` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `openid` varchar(50) NOT NULL,
   `friendopenid` varchar(50) NOT NULL,
@@ -53,10 +53,10 @@ CREATE TABLE IF NOT EXISTS `qhb_rob_list` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `qhb_user`
+-- 表的结构 `widgets_user`
 --
 
-CREATE TABLE IF NOT EXISTS `qhb_user` (
+CREATE TABLE IF NOT EXISTS `widgets_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `openid` varchar(50) NOT NULL,
   `nickname` text NOT NULL,
@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `qhb_user` (
   `country` text NOT NULL,
   `headimgurl` varchar(200) NOT NULL,
   `privilege` varchar(100) NOT NULL,
+  `unionid` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 

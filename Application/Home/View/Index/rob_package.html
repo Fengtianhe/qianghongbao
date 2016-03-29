@@ -39,7 +39,7 @@
 		
 		<if condition="$status neq 1">
 		<?php if($map['st'] != 1){ ?>
-		<a href="__ROOT__/home/index/dorob/openid/<?php echo $_GET['openid']?>">
+		<a href="__ROOTURL__/home/index/dorob/openid/<?php echo $_GET['openid']?>">
 		<?php } ?>
 		<div class="font15 rob_btn" <?php if($map['st'] != 1){ ?>style="background:#f00"<?php }else{ ?>style="background:#333"<?php }?>>轻轻一点，帮Ta抢红包</div>
 		<?php if($map['st'] != 1){ ?>
@@ -57,11 +57,11 @@
 				$map['sta'] = I('get.sta',$map['sta']);
 				if($map['sta'] == -1){ 
 					echo "
-						<a href='__ROOT__/home/index/index/openid/".$_SESSION['me']['weixin']['openid']."'>我也要抢</a>
+						<a href='__ROOTURL__/home/index/index/openid/".$_SESSION['me']['weixin']['openid']."'>我也要抢</a>
 					";
 				}elseif($map['sta'] == 1){
 					echo "
-						<a href='__ROOT__/home/index/index/openid/".$_SESSION['me']['weixin']['openid']."'>查看我的红包</a>
+						<a href='__ROOTURL__/home/index/index/openid/".$_SESSION['me']['weixin']['openid']."'>查看我的红包</a>
 					";
 				}
 			?>
@@ -109,7 +109,7 @@
 	<section>
 		<p class="clearfloat mar_top30">
 			<span class="font15 firend_num">已有<span>{$count}</span>位好友帮TA抢红包</span>
-			<span class="ranking_people font14"><a href="__ROOT__/home/Index/ranking_list">帮抢人气榜>></a></span>
+			<span class="ranking_people font14"><a href="__ROOTURL__/home/Index/ranking_list">帮抢人气榜>></a></span>
 		</p>
 		<!-- 有粉丝 -->
 		<div class="have_people">
@@ -127,7 +127,7 @@
 			</volist>
 		</div>
 		<p class="clearfloat mar_btom30">
-			<span class="ranking_people font14"><a href="__ROOT__/home/index/rules">查看活动规则>></a></span>
+			<span class="ranking_people font14"><a href="__ROOTURL__/home/index/rules">查看活动规则>></a></span>
 		</p>
 	</section>
 <script type="text/javascript">
