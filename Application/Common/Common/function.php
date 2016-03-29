@@ -13,7 +13,8 @@ function checkWeixinAuth(){
             'province'  => '吉林',
             'country'   => '中国',
             'headimgurl' => 'http://wx.qlogo.cn/mmopen/uOleZXC9MkHt18ILqqRobph0G6XHjPFicCYWMRDAZSW3vbDFNWQnT5sg2Hk3ADz6pJfpkrA4gKVbvBLwcicsvOBuOPOgrIfnwK/0',
-            'privilege'  => array()
+            'privilege'  => array(),
+            'unionid'   => 'o8sSjvyUp75GonpouRZZVjXVVky0'
         );
 
         $openid = $_SESSION['me']['weixin']['openid'];
@@ -33,12 +34,12 @@ function checkWeixinAuth(){
     }
 
     $openid = $_SESSION['me']['weixin']['openid'];
-        //对当前用户进行判断，没有则加入数据库
-        $is_user = M('user')->where(array('openid' => $openid))->find();   
-        if (!$is_user) {
-            $userinfo = $_SESSION['me']['weixin'];
-            $save_user = M('user')->add($userinfo);
-        }
+    //对当前用户进行判断，没有则加入数据库
+    $is_user = M('user')->where(array('openid' => $openid))->find();   
+    if (!$is_user) {
+        $userinfo = $_SESSION['me']['weixin'];
+        $save_user = M('user')->add($userinfo);
+    }
 }
 
 /**
@@ -61,4 +62,11 @@ function array_orderby()
     $args[] = &$data;
     call_user_func_array('array_multisort', $args);
     return array_pop($args);
+}
+
+function is_weixin(){ 
+    if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false) {
+        return true;
+    }  
+    return false;
 }
