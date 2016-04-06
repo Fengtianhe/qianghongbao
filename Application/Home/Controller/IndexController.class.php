@@ -195,16 +195,25 @@ class IndexController extends Controller {
         	return date("m/d h:i:s",$the_time);
        	}
     }
-    public function test() {
-        $data[] = array('volume' => 67, 'edition' => 2);
-		$data[] = array('volume' => 86, 'edition' => 1);
-		$data[] = array('volume' => 85, 'edition' => 6);
-		$data[] = array('volume' => 98, 'edition' => 2);
-		$data[] = array('volume' => 86, 'edition' => 6);
-		$data[] = array('volume' => 67, 'edition' => 7);
-
-		// Pass the array, followed by the column names and sort flags
-		$sorted = array_orderby($data, 'volume', SORT_DESC, 'edition', SORT_ASC);
-		var_dump($sorted);
+    public function balance() {
+    	$id = I('id');
+    	$openid = $_SESSION['me']['weixin']['openid'];
+    	$where['id'] 		= $id;
+    	$where['openid'] 	= $openid;
+    	$where['is_balance']= 0;
+    	$rob = M('rob')->where($where)->find();
+    	if (is_array($rob) && !empty($rob)) {
+    		if ($rob['total_rob'] > 20) {
+    			$user_info = base64_encode(json_encode($_SESSION['me']['weixin']));
+	    		$redirect_url = "http://1yg.com/?/api/weixinlogin/hbbalance";
+	    		$redirect_url = base64_encode($redirect_url);
+	    		redirect("http://1yg.com/?/api/weixinlogin/handle/".$redirect_url."/".$user_info);
+    		} else {
+    			$this->error('尚未满足提现条件');
+    		}
+    		
+    	} else {
+    		$this->error('已结算或失效');
+    	}
 	}    
 }
