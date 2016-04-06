@@ -196,9 +196,7 @@ class IndexController extends Controller {
        	}
     }
     public function balance() {
-    	$id = I('id');
     	$openid = $_SESSION['me']['weixin']['openid'];
-    	$where['id'] 		= $id;
     	$where['openid'] 	= $openid;
     	$where['is_balance']= 0;
     	$rob = M('rob')->where($where)->find();
