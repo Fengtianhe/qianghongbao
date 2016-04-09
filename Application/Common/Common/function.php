@@ -17,9 +17,9 @@ function checkWeixinAuth(){
             'unionid'   => 'o8sSjvyUp75GonpouRZZVjXVVky0'
         );
 
-        $openid = $_SESSION['me']['weixin']['openid'];
+        $unionid = $_SESSION['me']['weixin']['unionid'];
         //对当前用户进行判断，没有则加入数据库
-        $is_user = M('user')->where(array('openid' => $openid))->find();   
+        $is_user = M('user')->where(array('unionid' => $unionid))->find();
         if (!$is_user) {
             $userinfo = $_SESSION['me']['weixin'];
             $save_user = M('user')->add($userinfo);
@@ -33,9 +33,9 @@ function checkWeixinAuth(){
         $_SESSION['me']['weixin'] = $user_info;
     }
 
-    $openid = $_SESSION['me']['weixin']['openid'];
+    $unionid = $_SESSION['me']['weixin']['unionid'];
     //对当前用户进行判断，没有则加入数据库
-    $is_user = M('user')->where(array('openid' => $openid))->find();   
+    $is_user = M('user')->where(array('unionid' => $unionid))->find();
     if (!$is_user) {
         $userinfo = $_SESSION['me']['weixin'];
         $save_user = M('user')->add($userinfo);

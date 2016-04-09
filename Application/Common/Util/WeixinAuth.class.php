@@ -10,7 +10,7 @@ class WeixinAuth {
     {
         if ($code = I('code')) {
             $token = $this->get_access_token($code);
-            $user_info = $this->get_user_info($token['access_token'], $token['openid']);
+            $user_info = $this->get_user_info($token['access_token'], $token['unionid']);
             return $user_info;
         } else {
             $url = $this->get_authorize_url($redirect_uri);
@@ -57,7 +57,7 @@ class WeixinAuth {
     {
         if($access_token && $open_id)
         {
-            $info_url = "https://api.weixin.qq.com/sns/userinfo?access_token={$access_token}&openid={$open_id}&lang=zh_CN";
+            $info_url = "https://api.weixin.qq.com/sns/userinfo?access_token={$access_token}&unionid={$open_id}&lang=zh_CN";
             $info_data = $this->http($info_url);
 
             if($info_data[0] == 200)
@@ -78,7 +78,7 @@ class WeixinAuth {
     {
         if($access_token && $open_id)
         {
-            $info_url = "https://api.weixin.qq.com/sns/auth?access_token={$access_token}&openid={$open_id}&lang=zh_CN";
+            $info_url = "https://api.weixin.qq.com/sns/auth?access_token={$access_token}&unionid={$open_id}&lang=zh_CN";
             $info_data = $this->http($info_url);
 
             if($info_data[0] == 200)

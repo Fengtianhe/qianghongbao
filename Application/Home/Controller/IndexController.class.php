@@ -13,13 +13,13 @@ class IndexController extends Controller {
         checkWeixinAuth();
     }
     public function index(){
-     	$openid = $_SESSION['me']['weixin']['openid'];
+     	$unionid = $_SESSION['me']['weixin']['unionid'];
     	//判断用户是否已抢过 sign标识是否抢过红包
-    	$is_rob = M('rob')->where(array('openid' => $openid))->find();
+    	$is_rob = M('rob')->where(array('unionid' => $unionid))->find();
     	if ($is_rob) {
-    		$this->redirect('rob_package',array('openid' => $openid,'sign' => '1'));
+    		$this->redirect('rob_package',array('unionid' => $unionid,'sign' => '1'));
     	}else{
-    		$this->redirect('main',array('openid' => $openid,'sign' => '0'));
+    		$this->redirect('main',array('unionid' => $unionid,'sign' => '0'));
     	}
     }
     //抢红包首页
@@ -37,12 +37,12 @@ class IndexController extends Controller {
 	}
 	//读取排行榜
 	function paihang(){
-		$openid = I('get.openid' , 0);
-		$rob_list = M('rob_list')->where(array('openid' => $openid))->select();
+		$unionid = I('get.unionid' , 0);
+		$rob_list = M('rob_list')->where(array('unionid' => $unionid))->select();
 		$count = count($rob_list);
 		for($i=0;$i<$count;$i++){
-			$friendopenid = $rob_list[$i]['friendopenid'];
-			$user = M('user')->where(array('openid' => $friendopenid))->find();
+			$friendunionid = $rob_list[$i]['friendunionid'];
+			$user = M('user')->where(array('unionid' => $friendunionid))->find();
 			$rob_list[$i]['username'] = $user['nickname'];
 			$rob_list[$i]['headimgurl'] = $user['headimgurl'];
 			$the_time = $rob_list[$i]['rob_time'];
@@ -53,10 +53,10 @@ class IndexController extends Controller {
 	//抢红包页面
 	public function rob_package(){
 		$sign = $_GET['sign'];
-		$openid = $_GET['openid'];
-		$meopenid = $_SESSION['me']['weixin']['openid'];
-		if ($openid == $meopenid) {   //如果openid和当前用户相同则进入自己的页面
-			$user_infomation = M('user')->where(array('openid'=>$openid))->find();
+		$unionid = $_GET['unionid'];
+		$meunionid = $_SESSION['me']['weixin']['unionid'];
+		if ($unionid == $meunionid) {   //如果unionid和当前用户相同则进入自己的页面
+			$user_infomation = M('user')->where(array('unionid'=>$unionid))->find();
 			if (!$sign) { //如果没抢过红包
 				$map['first_rob'] = $this->randFloat();
 				$map['total_rob'] = $map['first_rob'];
@@ -71,17 +71,17 @@ class IndexController extends Controller {
 				}
 				//保存数据
 				$data['first_rob'] = $map['first_rob'];
-				$data['openid'] = $openid;
+				$data['unionid'] = $unionid;
 				$data['total_rob'] = $map['total_rob'];	
 				M('rob')->add($data);
-				$list['openid'] = $openid;
-				$list['friendopenid'] = $_SESSION['me']['weixin']['openid'];
+				$list['unionid'] = $unionid;
+				$list['friendunionid'] = $_SESSION['me']['weixin']['unionid'];
 				$list['rob_time'] = time();
 				$list['rob_price'] = $map['first_rob'];
 				M('rob_list')->add($list);
-				$this->redirect('rob_package',array('openid' => $openid,'sign' => '1'));
+				$this->redirect('rob_package',array('unionid' => $unionid,'sign' => '1'));
 			}else{ //如果抢过红包
-				$rob = M('rob')->where(array('openid'=>$openid))->find();
+				$rob = M('rob')->where(array('unionid'=>$unionid))->find();
 				$map['first_rob'] = $rob['first_rob'];
 				$map['total_rob'] = $rob['total_rob'];
 				$map['headimgurl'] = $user_infomation['headimgurl'];
@@ -100,19 +100,19 @@ class IndexController extends Controller {
 				$this->assign('map',$map);
 				$this->assign('status',1);
 			}
-		}else{//如果如果openid和当前用户不相同则进入帮忙抢的页面
-			//$is_rob = M('rob_list')->where(array('openid'=>$openid,'friendopenid' =>$meopenid))->find();
+		}else{//如果如果unionid和当前用户不相同则进入帮忙抢的页面
+			//$is_rob = M('rob_list')->where(array('unionid'=>$unionid,'friendunionid' =>$meunionid))->find();
 			//if ($is_rob) {//判断是否帮TA抢过
-				$temp = M('user')->where(array('openid' => $openid))->find();   //获取邀请人信息
+				$temp = M('user')->where(array('unionid' => $unionid))->find();   //获取邀请人信息
 				$map['nickname'] = $temp['nickname'];
 				$map['headimgurl'] = $temp['headimgurl'];
-				$rob = M('rob')->where(array('openid' => $openid))->find();    //获取邀请人抢过红包的金额
+				$rob = M('rob')->where(array('unionid' => $unionid))->find();    //获取邀请人抢过红包的金额
 				$map['first_rob'] = $rob['first_rob'];
 				$map['total_rob'] = $rob['total_rob'];
-				if (M('rob_list')->where(array('openid' => $openid,'friendopenid' => $meopenid))->find()) {
+				if (M('rob_list')->where(array('unionid' => $unionid,'friendunionid' => $meunionid))->find()) {
 					$map['st'] = 1;
 				}
-				if (M('rob')->where(array('openid' => $meopenid))->find()) {
+				if (M('rob')->where(array('unionid' => $meunionid))->find()) {
 					$map['sta'] = 1;
 				}else{
 					$map['sta'] = -1;
@@ -131,32 +131,32 @@ class IndexController extends Controller {
 		$this->display();
 	}
 	public function dorob(){
-		$openid = $_GET['openid'];
-		$user = M('user')->where(array('openid'=>$openid))->find();
+		$unionid = $_GET['unionid'];
+		$user = M('user')->where(array('unionid'=>$unionid))->find();
 		if (!$user) {
 			$userinfo = $_SESSION['me']['weixin'];
     		$save_user = M('user')->add($userinfo);
 		}
-		$meopenid = $_SESSION['me']['weixin']['openid'];
+		$meunionid = $_SESSION['me']['weixin']['unionid'];
 		$rob_price = $this->randFloat();
 		//保存帮抢数据
-		$list['openid'] = $openid;
-		$list['friendopenid'] = $meopenid;
+		$list['unionid'] = $unionid;
+		$list['friendunionid'] = $meunionid;
 		$list['rob_time'] = time();
 		$list['rob_price'] = $rob_price;
 		M('rob_list')->add($list);
 		//邀请人数+1
-		$temp = M('rob')->where(array('openid' => $openid))->find();
+		$temp = M('rob')->where(array('unionid' => $unionid))->find();
 		$data['total_rob'] = floatval($temp['total_rob']) + floatval($rob_price);
 		$data['friend'] =$temp['friend'] + 1;
-		M('rob')->where(array('openid' => $openid))->save($data);
+		M('rob')->where(array('unionid' => $unionid))->save($data);
 
-		if (M('rob')->where(array('openid' => $meopenid))->find()) {
+		if (M('rob')->where(array('unionid' => $meunionid))->find()) {
 			$sta = '1';
 		}else{
 			$sta = '-1';
 		}
-		$this->redirect('rob_package',array('openid'=>$openid,'sign' => '1','sta' => $sta));
+		$this->redirect('rob_package',array('unionid'=>$unionid,'sign' => '1','sta' => $sta));
 	}
 
 	//读取人气榜
@@ -164,8 +164,8 @@ class IndexController extends Controller {
 		$rob = M('rob')->select();
 		$count = count($rob);
 		for($i=0;$i<$count;$i++){
-			$openid = $rob[$i]['openid'];
-			$user = M('user')->where(array('openid'=>$openid))->find();
+			$unionid = $rob[$i]['unionid'];
+			$user = M('user')->where(array('unionid'=>$unionid))->find();
 			$rob[$i]['headimgurl'] = $user['headimgurl'];
 			$rob[$i]['nickname'] = $user['nickname'];
 		}
@@ -196,8 +196,8 @@ class IndexController extends Controller {
        	}
     }
     public function balance() {
-    	$openid = $_SESSION['me']['weixin']['openid'];
-    	$where['openid'] 	= $openid;
+    	$unionid = $_SESSION['me']['weixin']['unionid'];
+    	$where['unionid'] 	= $unionid;
     	$where['is_balance']= 0;
     	$rob = M('rob')->where($where)->find();
     	if (is_array($rob) && !empty($rob)) {

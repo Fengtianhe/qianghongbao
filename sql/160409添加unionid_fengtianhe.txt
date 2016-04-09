@@ -1,0 +1,7 @@
+ALTER TABLE  `qhb_rob` ADD  `unionid` VARCHAR( 50 ) NOT NULL AFTER  `openid`;
+
+ALTER TABLE  `qhb_rob_list` CHANGE  `openid`  `unionid` VARCHAR( 50 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
+ALTER TABLE  `qhb_rob_list` CHANGE  `friendopenid`  `friendunionid` VARCHAR( 50 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
+ALTER TABLE  `qhb_user` ADD  `unionid` VARCHAR( 50 ) NOT NULL AFTER  `openid`;
