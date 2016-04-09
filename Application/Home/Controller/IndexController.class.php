@@ -201,7 +201,7 @@ class IndexController extends Controller {
     	$where['is_balance']= 0;
     	$rob = M('rob')->where($where)->find();
     	if (is_array($rob) && !empty($rob)) {
-    		if ($rob['total_rob'] > 20) {
+    		if ($rob['total_rob'] > C('PAYCASH')) {
     			$user_info = base64_encode(json_encode($_SESSION['me']['weixin']));
 	    		$redirect_url = "http://1yg.com/?/api/weixinlogin/hbbalance";
 	    		$redirect_url = base64_encode($redirect_url);
