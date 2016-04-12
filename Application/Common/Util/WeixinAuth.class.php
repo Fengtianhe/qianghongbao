@@ -3,8 +3,8 @@
 namespace Common\Util;
 class WeixinAuth {
     //高级功能-》开发者模式-》获取
-    private $app_id = 'wxa0c4*************';
-    private $app_secret = 'e095b6dc**********************';
+    private $app_id = 'wx90fe11f3841b91e2';
+    private $app_secret = 'a0cb316442fdac09d1261fc0aa7e708f';
 
     public function authorize($redirect_uri)
     {
