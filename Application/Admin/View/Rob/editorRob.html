@@ -1,0 +1,33 @@
+<div class="pageContent">
+	<table class="table" width="100%" layoutH="135">
+		<thead>
+			<tr>
+				<th width="50">Id</th>
+				<th width="220">昵称</th>
+				<th width="50">金额</th>
+				<th width="20">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<volist id="vo" name="rob_list">
+			<tr target="sid" rel="{$vo.id}">
+				<td>{$vo.id}</td>
+				<td>{$vo.nickname}</td>
+				<td>{$vo.total_rob}</td>
+				<td>
+					<!-- <a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a> -->
+					<a title="编辑" target="dialog" href="/admin/rob/editorRob?id={$vo.id}" class="btnEdit">编辑</a>
+				</td>
+			</tr>
+			</volist>
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>共{$page.totalCount}条</span>
+		</div>
+		
+		<div class="pagination" targetType="navTab" totalCount="{$page.totalCount}" numPerPage="{$page.numPerPage}" pageNumShown="6" currentPage="{$page.pageNum}"></div>
+
+	</div>
+</div>

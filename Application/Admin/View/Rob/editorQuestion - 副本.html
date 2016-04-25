@@ -1,0 +1,73 @@
+<h2 class="contentTitle">题目</h2>
+
+
+<div class="pageContent">
+	
+	<form method="post" action="/admin/question/saveQuestion" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent nowrap" layoutH="97">
+			<p style="width:500px">
+				<label>题型：</label>
+				<select name="question_type" id="">
+					<option <?php if($question_info['question_type'] == 1) echo "selected"; ?> value="1">单选</option>
+					<option <?php if($question_info['question_type'] == 2) echo "selected"; ?> value="2">多选</option>
+					<option <?php if($question_info['question_type'] == 3) echo "selected"; ?> value="3">判断</option>
+				</select>
+			</p>
+			<p style="width:500px">
+				<label>分类：</label>
+				<select name="category" id="" class="category">
+					<option <?php if($question_info['category'] == 1) echo "selected"; ?> value="1">科目1</option>
+					<option <?php if($question_info['category'] == 2) echo "selected"; ?> value="2">科目2</option>
+					<option <?php if($question_info['category'] == 3) echo "selected"; ?> value="3">科目3</option>
+					<option <?php if($question_info['category'] == 4) echo "selected"; ?> value="4">科目4</option>
+				</select>
+			</p>
+			<p style="width:500px;display:none" class="province">
+				<label>地区：</label>
+				<select name="province" id="">
+					<option value="">吉林四平</option>
+					<option value="">科目2</option>
+					<option value="">科目3</option>
+					<option value="">科目4</option>
+				</select>
+			</p>
+			<p style="width:500px;height:60px">
+				<label>标题：</label>
+				<textarea class="" name="title" rows="2" cols="50">{$question_info.title}</textarea>
+			</p>
+			<p style="width:500px;height:160px">
+				<label>选项：</label>
+				<textarea class="" name="stem_content" rows="8" cols="50">{$question_info.question_stem_str}</textarea>
+			</p>
+			<p style="width:500px">
+				<label>正确答案：</label>
+				<input type="text" name="answer" maxlength="20" class="required" value="{$question_info.answer}" />
+			</p>
+			<p style="width:500px;height:60px">
+				<label>解释详情：</label>
+				<textarea class="" name="explain" rows="2" cols="50">{$question_info.explain}</textarea>
+			</p>
+			<div class="divider"></div>
+		</div>
+		<div class="formBar">
+			<ul>
+				<input type="hidden" name="id" value="{$question_info['id']}">
+				<input type="hidden" name="close_dialog" value="1">
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+</div>
+<script type="text/javascript">
+	$(function(){
+		$('.category').change(function(){
+			if ($(this).val() == 4) {
+				$('.province').show();
+			} else {
+				$('.province').hide();
+			}
+		});
+	})
+</script>

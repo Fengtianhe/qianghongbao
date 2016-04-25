@@ -1,0 +1,23 @@
+<form id="pagerForm" method="post" action="demo_page1.html">
+	<input type="hidden" name="status" value="${param.status}">
+	<input type="hidden" name="keywords" value="${param.keywords}" />
+	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="numPerPage" value="${model.numPerPage}" />
+	<input type="hidden" name="orderField" value="${param.orderField}" />
+</form>
+
+<div class="pageContent">
+	<form action="/admin/user/doTopUp" method="post" onsubmit="return validateCallback(this,dialogAjaxDone);">
+	<table class="table" width="100%" layoutH="138">
+		<label style="width: 100%;padding: 10px 20px 10px 20px">充值用户信息</label>
+		<p>
+			
+			  <input type="hidden" value="{$info.id}" name="id">
+		姓名：<input type="text" disabled="disabled" value="{$info.realname}"></input>
+		充值时间：<input type="text" name="time">(小时)</input>
+				<button type="submit">充值</button>		
+
+		</p>
+	</table>
+	</form>
+</div>

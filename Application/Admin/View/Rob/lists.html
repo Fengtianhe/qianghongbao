@@ -1,0 +1,100 @@
+<form id="pagerForm" method="post" action="#rel#">
+	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="numPerPage" value="{$page.numPerPage}" />
+	<input type="hidden" name="orderField" value="{$page.orderField}" />
+	<input type="hidden" name="orderDirection" value="{$page.orderDirection}" />
+</form>
+
+
+<div class="pageHeader">
+	<form rel="pagerForm" onsubmit="return navTabSearch(this);" action="/admin/question/lists" method="post">
+	<div class="searchBar">
+		<ul class="searchContent" style="height:auto">
+			<li>
+				id：
+				<input type="text" name="id" value="<?php echo $_REQUEST['id']?>"/>
+			</li>
+			<li>
+				题干：
+				<input type="text" name="email" value="<?php echo $_REQUEST['title']?>"/>
+			</li>
+			 <li>
+				<p style="width:500px">
+					题型：
+					<select class="" name="status" id="status">
+							<option value="">所有用户</option>
+							<foreach name="user_status" item="statu">
+							<option value="{$key}" <if condition="$key eq $_REQUEST['status']">selected="selected"</if>>{$statu.name}</option>
+							</foreach>
+					</select>
+				</p>
+			</li>
+			<li>
+				<p style="width:500px">
+					分类：
+					<select class="" name="is_verify_email" id="is_verify_email">
+							<option value="">全部</option>
+							<foreach name="email_verify_status" item="statu">
+							<option value="{$key}" <if condition="$key eq $_REQUEST['is_verify_email']">selected="selected"</if>>{$statu.name}</option>
+							</foreach>
+					</select>
+				</p>
+			</li>
+			<!--<li>
+				<p style="width:500px">
+					学  校：
+					<select class="" name="school_id" id="school">
+							<option value="">所有学校</option>
+							<volist name="school_list" id="school">
+								<option value="{$school.id}" <if condition="$school['id'] eq $_REQUEST['school_id']">selected="selected"</if>>{$school.s_name}</option>
+							</volist>
+					</select>
+				</p>
+			</li>
+			<li>
+				注册时间：
+				<input type="text" class="date" name="start_time" value="<?php echo $_REQUEST['start_time']?>" style="width:75px"/>~<input type="text" class="date" name="end_time" value="<?php echo $_REQUEST['end_time']?>" style="width:75px"/>
+			</li> -->
+		</ul>
+		
+		<div class="subBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">查找</button></div></div></li>
+			</ul>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<table class="table" width="100%" layoutH="135">
+		<thead>
+			<tr>
+				<th width="50">Id</th>
+				<th width="220">昵称</th>
+				<th width="50">金额</th>
+				<th width="20">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<volist id="vo" name="lists">
+			<tr target="sid" rel="{$vo.id}">
+				<td>{$vo.id}</td>
+				<td>{$vo.nickname}</td>
+				<td>{$vo.total_rob}</td>
+				<td>
+					<!-- <a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a> -->
+					<a title="编辑" target="dialog" href="/admin/rob/editorRob?id={$vo.id}" class="btnEdit">编辑</a>
+				</td>
+			</tr>
+			</volist>
+		</tbody>
+	</table>
+	<div class="panelBar">
+		<div class="pages">
+			<span>共{$page.totalCount}条</span>
+		</div>
+		
+		<div class="pagination" targetType="navTab" totalCount="{$page.totalCount}" numPerPage="{$page.numPerPage}" pageNumShown="6" currentPage="{$page.pageNum}"></div>
+
+	</div>
+</div>
