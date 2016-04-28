@@ -41,6 +41,10 @@ class RobController extends CommonController {
         if ($id) {
             $rob_info = M('rob')->where(array('id' => $id))->find();
             $rob_list = M('rob_list')->where(array('friendunionid'=>$rob_info['unionid']))->select();
+            foreach($lists as $key => &$value) {
+                $user_info = D('user')->where(array('unionid'=>$value['unionid']))->find();
+                $value['nickname'] = $user_info['nickname'];
+            }
             $this->assign('rob_list',$rob_list);
         }
         $this->display();

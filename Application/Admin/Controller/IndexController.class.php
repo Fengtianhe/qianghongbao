@@ -15,14 +15,14 @@ class IndexController extends CommonController {
 	}
 
     public function index(){
-		//if ($_SESSION['admin']['me'] == '' || !$_SESSION['admin']['me']) {
-    	//	$this->display('login');
-    	//} else {
+		if ($_SESSION['admin']['me'] == '' || !$_SESSION['admin']['me']) {
+    		$this->display('login');
+    	} else {
     		$url['xml_url'] = __ROOT__."/Public/admin/dwz.frag.xml";
 	    	$url['login'] = U('Admin/admin/login');
 	    	$this->assign('url',$url);
 	        $this->display();
-    	//}
+    	}
     }
     public function dologin(){
     	$model  =  M('admin');
@@ -45,5 +45,21 @@ class IndexController extends CommonController {
     public function logout(){
     	$_SESSION['admin']['me'] = "";
     	$this->redirect('index');
+    }
+
+    public function editAdmin(){
+        $this->display();
+    }
+    public function saveAdmin(){
+        $password = I('post.password');
+        M('admin')->where(array('email'=>$_SESSION['admin']['me']['email']))->save(array('password'=>md5($password)));
+        $result['statusCode'] = "200";
+        $result['message']   = "修改成功";
+        $result['navTabId'] = "";
+        $result['rel']   = "";
+        $result['callbackType'] = "closeCurrent";
+        $result['forwardUrl']   = "";
+        $result['confirmMsg'] = "";
+        $this->ajaxReturn($result);
     }
 }
